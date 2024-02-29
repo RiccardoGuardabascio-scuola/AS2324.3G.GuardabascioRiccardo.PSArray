@@ -12,14 +12,14 @@
             CaricaVettori(ref voti, ref pesi, nVoti);
             Console.WriteLine("I voti con in relativi pesi:");
             StampaVotiPesi(voti, pesi, nVoti);
-
+            StampaVotiDispariMaggiori4(ref voti, ref pesi, nVoti);
         }
         static void StampaVotiPesi(double[] voti, int[] pesi, int nVoti)
         {
             Console.WriteLine("Voti     Pesi");
             for(int i=0; i<nVoti; i++)
             {
-                Console.WriteLine($"{voti[i]}      {pesi[i]}");
+                Console.WriteLine($"{voti[i]}         {pesi[i]}");
             }
         }
         static void CaricaVettori(ref double[] voti, ref int[] pesi, int nVoti)
@@ -29,6 +29,18 @@
             {
                 voti[i] = random.Next(0,11);
                 pesi[i] = random.Next(0, 101);
+            }
+        }
+
+        static void StampaVotiDispariMaggiori4(ref double[] voti, ref int[] pesi, int nVoti)
+        {
+            Console.WriteLine("Voti in posizioni dispari e maggiori di 4, con i relativi pesi");
+            for(int i=0; i < nVoti; i += 2)
+            {
+                if (voti[i] > 4)
+                {
+                    Console.WriteLine($"{voti[i]}         {pesi[i]}");
+                }
             }
         }
 
