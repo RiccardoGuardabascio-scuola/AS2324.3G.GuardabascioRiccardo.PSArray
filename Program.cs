@@ -4,7 +4,18 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            Console.WriteLine("Riccardo Guardabascio 3G PSArray");
+            Console.WriteLine("I voti con in relativi pesi:");
+            StampaVotiPesi(voti, pesi, nVoti);
+
+        }
+        static void StampaVotiPesi(double[] voti, int[] pesi, int nVoti)
+        {
+            Console.WriteLine("Voti     Pesi");
+            for(int i=0; i<voti.Length; i++)
+            {
+                Console.WriteLine(voti[i]+       pesi[i]);
+            }
         }
     }
 }
