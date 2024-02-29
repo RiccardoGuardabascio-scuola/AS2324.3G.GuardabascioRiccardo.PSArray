@@ -16,10 +16,17 @@
             double max = voti[0], min = voti[0];
             int posmin = 0, posmax = 0;
             double mediaPonderata = MediaPonderata(voti, pesi, nVoti, ref max, ref min, ref posmin, ref posmax);
-            Console.WriteLine($"La media ponderata dei voti è: {mediaPonderata}, il voto minimo è: {min}, in posizione {posmin+1}, mentre il voto massimo è: {max}, in posizione {posmax+1}");
+            Console.WriteLine($"\nLa media ponderata dei voti è: {mediaPonderata}, il voto minimo è: {min}, in posizione {posmin+1}, mentre il voto massimo è: {max}, in posizione {posmax+1}");
             Console.WriteLine("Inserire un voto per stampare tutti i voti che ricadono nell'intervallo +-0.5");
             int voto = Convert.ToInt32(Console.ReadLine());
             ElencoVotiNellIntorno(voti, pesi, nVoti, voto);
+            OrdinaPerVoto(ref voti, ref pesi, nVoti);
+            Console.WriteLine("\nVoti e relativi pesi ordinati in ordine crescente");
+            Console.WriteLine("Voti     Pesi");
+            for (int i = 0; i < nVoti; i++)
+            {
+                Console.WriteLine($"{voti[i]}         {pesi[i]}");
+            }
         }
         static void StampaVotiPesi(double[] voti, int[] pesi, int nVoti)
         {
@@ -34,7 +41,7 @@
             Random random = new Random();
             for (int i = 0; i < nVoti; i++)
             {
-                voti[i] = random.Next(0,11);
+                voti[i] = random.NextDouble()*10+1;
                 pesi[i] = random.Next(0, 101);
             }
         }
@@ -84,6 +91,25 @@
                 if (voti[i]>voto-0.5 && voti[i] < voto + 0.5)
                 {
                     Console.WriteLine($"Il voto {voti[i]} in posizione {i + 1}, è compreso nell'intervallo che va da {voto - 0.5} e {voto + 0.5}");
+                }
+            }
+        }
+
+        static void OrdinaPerVoto(ref double[] voti, ref int[] pesi, int nVoti)
+        {
+            for (int i = 0; i < nVoti - 1; i++)
+            {
+                for (int j = 0; j < nVoti - 1 - i; j++)
+                {
+                    if (voti[j] > voti[j + 1])
+                    {
+                        double temp = voti[j];
+                        voti[j] = voti[j + 1];
+                        voti[j + 1] = temp;
+                        int temppesi = pesi[j];
+                        pesi[j] = pesi[j + 1];
+                        pesi[j + 1] = temppesi;
+                    }
                 }
             }
         }
