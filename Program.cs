@@ -9,6 +9,7 @@
             int nVoti=Convert.ToInt32(Console.ReadLine());
             double[] voti=new double[nVoti];
             int[] pesi=new int[nVoti];
+            CaricaVettori(ref voti, ref pesi, nVoti);
             Console.WriteLine("I voti con in relativi pesi:");
             StampaVotiPesi(voti, pesi, nVoti);
 
@@ -21,7 +22,15 @@
                 Console.WriteLine($"{voti[i]}      {pesi[i]}");
             }
         }
+        static void CaricaVettori(ref double[] voti, ref int[] pesi, int nVoti)
+        {
+            Random random = new Random();
+            for (int i = 0; i < nVoti; i++)
+            {
+                voti[i] = random.Next(0,11);
+                pesi[i] = random.Next(0, 101);
+            }
+        }
 
-        
     }
 }
