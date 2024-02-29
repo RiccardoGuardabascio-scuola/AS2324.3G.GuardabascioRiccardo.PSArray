@@ -13,8 +13,8 @@
             Console.WriteLine("I voti con in relativi pesi:");
             StampaVotiPesi(voti, pesi, nVoti);
             StampaVotiDispariMaggiori4(ref voti, ref pesi, nVoti);
-            double max = voti[0], min = voti[0];
             int posmin = 0, posmax = 0;
+            double max=0, min=0;
             double mediaPonderata = MediaPonderata(voti, pesi, nVoti, ref max, ref min, ref posmin, ref posmax);
             Console.WriteLine($"\nLa media ponderata dei voti è: {mediaPonderata}, il voto minimo è: {min}, in posizione {posmin+1}, mentre il voto massimo è: {max}, in posizione {posmax+1}");
             Console.WriteLine("Inserire un voto per stampare tutti i voti che ricadono nell'intervallo +-0.5");
@@ -68,7 +68,9 @@
                 sommatoriaVotiPesi += voti[i] * pesi[i];
             }
             mediaPonderata = sommatoriaVotiPesi / sommatoriaPesi;
-            for(int i=1; i < nVoti; i++)
+            max = voti[0];
+            min = voti[0];
+            for (int i=1; i < nVoti; i++)
             {
                 if (voti[i] > max)
                 {
@@ -78,7 +80,7 @@
                 if (voti[i] < min)
                 {
                     min = voti[i];
-                    posmax = i;
+                    posmin = i;
                 }
             }
             return mediaPonderata;
